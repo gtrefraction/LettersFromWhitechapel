@@ -1,27 +1,30 @@
+<body>
+	<script>
+var canvas = null;
+var context = null;
+var img = null;
 
-
-
-setup = function() {
-	// Grab the body element using document.getElementById,
-	// assume the body element has an id of 'body'.
-	// Create a canvas element using document.createElement,
-	// then set the width and height properties to 1200 and
-	// 720, respectively.
-	// Finally, append the canvas element to the body.
-    // Note that all the variables you'll need for this
-    // have already been created and assigned a value of
-    // null. You'll need to modify this assignment to
-    // the correct value as specified above.
-	var body = null;/* YOUR CODE HERE */
-	var canvas = null;/* YOUR CODE HERE */
-
-	canvas.width = 1200;// YOUR CODE HERE
-	canvas.height = 720;// YOUR CODE HERE
-
-	// YOUR CODE HERE
+var onImageLoad = function(){
+	console.log("IMAGE!!!");
+	context.drawImage(img,192,192);
 };
 
-// We'll call your setup function in our test code, so
-// don't call it in your code.
-// setup();
+var setup = function() {
+	canvas = document.createElement('canvas');
+	context = canvas.getContext('2d')
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
 
+	img = new Image();
+	img.onload = onImageLoad;
+	img.src = "ralphyrobot.png"
+};
+
+onImageLoad = function(){
+	console.log("IMAGE!!!");
+	context.drawImage(img,192,192);
+};
+
+setup();
+	</script>
+</body>
