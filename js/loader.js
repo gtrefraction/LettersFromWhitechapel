@@ -42,7 +42,7 @@
     fork_head : "img/fork_head.png",
     fronttrees : "img/front_trees.png",
     grass : "img/grass.png",
-    ground : "img/ground.png",
+    ground : "img/main_bg.png",
     happy_pakia : "img/happy_pakia.png",
     log : "img/log.png",
     pappu : "img/pappu.png",
