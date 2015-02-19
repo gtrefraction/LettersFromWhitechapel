@@ -196,11 +196,11 @@ canvas#game_bg {
 	font-size: 67px;
 	line-height: 100px;
 	font-weight: normal;
-	color: #0C090A;
+	color: #FDEEF4;
 	text-align: center;
 	margin: 0;
 	padding: 0;
-	text-shadow: 3px 3px 0px white;
+	text-shadow: 3px 3px 0px black;
 }
 
 #credits, #high_score, #last_score {
