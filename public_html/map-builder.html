@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title>Map Builder</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      body {
+        margin:0px;
+      }
+        
+        .marker {
+          position:absolute;
+          width:22px;
+          height:22px;
+          border-radius:50px;
+          opacity:0.55;
+          background: #000;
+        }
+        
+        .green {
+          background:#006400;
+        }
+        
+        .yellow {
+          background:#EEEE00;
+        }
+    </style>
+  </head>
+  <body>
+    
+    <img id="board" alt="" src="Letters_from_Whitechapel_003.jpg"/>
+    <div id="info"></div>
+    <div id="master-marker" class="marker green"></div>
+    <div id="save-div"></div>
+    
+    <script type="text/javascript">
+      var saveDiv = document.getElementById('saveDiv');
+      var marker = document.getElementById('master-marker');
+
+      document.getElementById('board').onmousedown = function(e) {
+        if (e.button === 0) {
+          marker.x = parseInt(e.pageX)-11;
+          marker.y = parseInt(e.pageY)-11;
+          marker.style.left = marker.x + "px";
+          marker.style.top = marker.y + "px";
+          document.getElementById('info').innerHTML = marker.x + ", " + marker.y;
+        }
+        //console.log(x + "," + y);
+      }
+
+      var id = 1;
+      var saveDiv = document.getElementById('save-div');
+
+
+      document.addEventListener('contextmenu', function(e) { 
+        e.preventDefault(); 
+        saveDiv.innerHTML += "<br/>&lt;div id=&quot;" + id + "&quot; style=&quot;left:" + marker.x + "px; top:" + marker.y + "px;&quot; class=&quot;marker&quot;&gt;&lt;/div&gt;";
+        id++;
+        return false; 
+      }, 
+      false); 
+    </script>
+  </body>
+</html>
