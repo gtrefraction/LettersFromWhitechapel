@@ -112,9 +112,6 @@ mit.main = function() {
 
   // Start Button
   var startGame = function() {
-    // Play the awesome music! Really awesome
-    music.play();
-    flap.pause();
 
     // Hide the Start Screen
     ui.start_screen.fadeOut();
@@ -125,32 +122,11 @@ mit.main = function() {
     mit.start_btn_clicked = 1;
     mit.game_started = 0;
 
-    mit.Backgrounds.common_bg_speed = 1;
-    mit.Backgrounds.resetAllSpeed();
-
-    // Reset all accelerations and make
-    // pappu stationary
-    mit.Pappu.drawStatic(ctx);
-    mit.ax = 0; mit.ay = 0;
-    mit.vx = 0; mit.vy = 0;
-
-    // if game over due to hitting someone
-    // he'll rotate a lot. so need ta reset
-    // on restart
-    mit.Pappu.rotate_angle = 0;
 
     // reset score
     mit.score = 0;
 
-    // Nuke all forks
-    mit.ForkUtils.forks = [];
-    // Nuke all branches
-    mit.BranchUtils.branches = [];
-    // Nuke all collectibles
-    mit.CollectibleUtils.collecs = [];
-    // Nuke all pakias and cur_pakia
-    mit.PakiaUtils.pakias = [];
-    mit.PakiaUtils.cur_pakia = false;
+
   };
 
   ui.start_game.on('mousedown', function() {
@@ -301,7 +277,6 @@ mit.main = function() {
     // Show last_score
     ui.last_score.text("Last Score: " + parseInt(mit.score));
 
-
     ui.start_game.html('re-start');
     ui.tweet.html('tweet score');
     ui.fb.html('post on fb');
@@ -316,11 +291,6 @@ mit.main = function() {
     mit.game_over = 1;
     mit.start_btn_clicked = 0;
 
-    // Pappu if invincible will be no morez
-    mit.Pappu.undoInvincible();
-
-    // Nuke all clones
-    mit.Pappu.clones.length = 0;
 
     // Share
     var tweet = document.getElementById("tweet");
@@ -339,11 +309,7 @@ mit.main = function() {
 
   // Initializations
   mit.Backgrounds.init(ctx);
-  mit.ForkUtils.init();
-  mit.BranchUtils.init();
-  mit.CollectibleUtils.init();
-  mit.Pappu.init();
-  mit.PakiaUtils.init();
+
 
 
   (function renderGame() {
@@ -378,18 +344,6 @@ mit.main = function() {
       return;
     }
 
-    //mit.ForkUtils.draw(ctx);
-    //mit.BranchUtils.draw(ctx);
-
-    //mit.ForkUtils.checkCollision();
-
-    // Send over Pakias (Enemies)
-    // mit.PakiaUtils.render(ctx);
-
-    // Collectibles
-    // mit.CollectibleUtils.draw(ctx);
-
-    // mit.Pappu.createClones(3);
 
     if (mit.game_started) {
 
