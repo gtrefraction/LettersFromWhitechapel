@@ -1,13 +1,20 @@
-# Letters From Whitechapel
+<h1>Letters from Whitechapel Game Aid</h1>
 
+Letters from Whitechapel is a great game.  This game aid can make it that much better.
 
-This HTML5 Game (Letters From Whitechapel) has been happily made to stop cheaters.
+<h2>What's it do?</h2>
 
-**[PLAY THE GAME HERE](http://khele.in/pappu-pakia/)**
+The application provides three basic features:
 
-## Credits
+<h3>Feature 1: Rank Locations</h3>
+todo explain
 
-Handsomely coded by [Will Edwards](http://twitter.com/pwrautomation).
+<h3>Feature 2: Randoming choosing Jack's Hideout</h3>
+todo explain
 
+<h3>Feature 3: Aiding detectives tracking Jack</h3>
 
-## Sharing is Caring <3
+<h2>See it in action</h2>
+
+<a href="https://dl.dropboxusercontent.com/u/24945431/whitechapel/index.html">Try it out!</a>
+
