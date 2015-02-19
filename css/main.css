@@ -74,11 +74,6 @@ h1, #loadText {
 	font-family: 'Happy Sans', cursive;
 }
 
-.gads {
-	text-align: center;
-	max-width: 1000px;
-	margin: 20px auto;
-}
 
 #mute {
 	width: 49px;
@@ -201,7 +196,7 @@ canvas#game_bg {
 	font-size: 67px;
 	line-height: 100px;
 	font-weight: normal;
-	color: #945430;
+	color: #0C090A;
 	text-align: center;
 	margin: 0;
 	padding: 0;
