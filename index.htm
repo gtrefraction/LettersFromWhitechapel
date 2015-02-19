@@ -10,6 +10,10 @@
 
 <body>
 
+  <div class="gads">
+
+  </div>
+
   <div class="container">
 
     <!-- Start Screen -->
@@ -34,6 +38,36 @@
     </div>
     <!-- /Start Screen -->
   
+    <!-- Loading sounds -->
+    <audio id="start" loop>
+      <source src="sound/pappu-pakia2.3.ogg"  type="audio/ogg">
+      <source src="sound/pappu-pakia2.3.mp3"  type="audio/mp3">
+    </audio>
+    
+    <audio id="angry_jump">
+      <source src="sound/jump1.ogg" type="audio/ogg">
+      <source src="sound/jump1.mp3" type="audio/mp3">
+    </audio>
+    
+    <audio id="sad_jump">
+      <source src="sound/jump2.ogg" type="audio/ogg">
+      <source src="sound/jump2.mp3" type="audio/mp3">
+    </audio>
+    
+    <audio id="happy_jump">
+      <source src="sound/jump3.ogg" type="audio/ogg">
+      <source src="sound/jump3.mp3" type="audio/mp3">
+    </audio>
+    
+    <audio id="flap">
+      <source src="sound/flap.ogg" type="audio/ogg">
+      <source src="sound/flap.mp3" type="audio/mp3">
+    </audio>
+    
+    <audio id="ting">
+      <source src="sound/ting.ogg" type="audio/ogg">
+      <source src="sound/ting.mp3" type="audio/mp3">
+    </audio>
 
     <canvas id="game_bg"></canvas>
     <canvas id="game_main"></canvas>
@@ -56,6 +90,7 @@
 
   </div>
 
+  <div id="fps_count"></div>
 
   <div id="share_btns">
     
@@ -118,7 +153,7 @@
       You are Jack the Ripper, you must choose a hideout and track your moves.
 	  If someone wants to arrest you they can input their guess and you can't cheat.
     </p>
- 
+
     <h3>Credits</h3>
     <p>
       Handsomely coded by <a href="http://twitter.com/pwrautomation">Will</a>.
@@ -127,7 +162,7 @@
 
     <h3>Links</h3>
     <p>
-      <a href="http://github.com/gtrefraction/LettersFromWhitechapel">Code on Github</a>
+      <a href="http://github.com/gtrefraction/LettersFromWhitechapel">Code on Github</a> |
     </p>
   </footer>
 
@@ -135,7 +170,7 @@
     <div id="disqus_thread"></div>
   <script type="text/javascript">
       /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-      var disqus_shortname = 'gtrefraction'; // required: replace example with your forum shortname
+      var disqus_shortname = 'khelein'; // required: replace example with your forum shortname
 
       /* * * DON'T EDIT BELOW THIS LINE * * */
       (function() {
