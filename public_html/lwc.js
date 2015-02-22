@@ -1,6 +1,8 @@
 var lwc = {};
 
 lwc.init = function() {
+  //play as Jack
+  $("#jack-link").click(lwc.showHideout);
   // rank
   $("#rank-link").click(lwc.showRanks);
   $(".rank-key").click(lwc.showSelectedRankOnly);
@@ -24,6 +26,12 @@ lwc.init = function() {
 
   // murder location
   $("#location-markers .marker").click(lwc.setMurderLocationOrTurnOffMarker);
+};
+
+lwc.showHideout = function() {
+  $("#murder-hideout-link").removeClass("hide");
+  $("#jack-link").hide();  
+  lwc.resetJackTracking();
 };
 
 lwc.showRanks = function() {
@@ -193,12 +201,22 @@ lwc.selectMurderLocation = function($marker) {
   $("#murder-location-link").addClass("hide");
   $("#murder-next-link").removeClass("hide");
 };
-    
+  
 lwc.selectMurderTime = function() {
   if (!lwc.isMurderTimeSet()) {
     var $this = $(this);
     lwc.setMurderTimeId($this.attr("id"));
     lwc.selectTime($this);
+    $("#murder-time-link").addClass("hide"); 
+    $("#murder-location-link").removeClass("hide");
+  }
+};
+
+lwc.selectHideoutTime = function() {
+  if (!lwc.isplayAsJackSet()) {
+    var $this = $(this);
+    lwc.setHideoutId($this.attr("id"));
+    lwc.selectHideout($this);
     $("#murder-time-link").addClass("hide"); 
     $("#murder-location-link").removeClass("hide");
   }
