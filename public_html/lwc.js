@@ -162,7 +162,7 @@ lwc.randomPick = function(nodes) {
 lwc.showPossibleHomeSpot = function(node, addBigVisualEffect) {
   lwc.hideMarker($("#location-markers .marker"));
   lwc.turnOnNodes([node]);
-  Jack.hideout === node;
+  Jack.hideout = node.id;
   if (addBigVisualEffect) {
     var $nodeEl = lwc.getMarkerForNode(node);
     $nodeEl.css({
