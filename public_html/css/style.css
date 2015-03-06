@@ -54,6 +54,10 @@ body {
   background: #ff0000;
 }
 
+.blue-marker {
+  background: blue;
+}
+
 .show {
   visibility: visible;
 }
