@@ -26,11 +26,14 @@ lwc.init = function() {
 
   // murder location
   $("#location-markers .marker").click(lwc.setMurderLocationOrTurnOffMarker);
+  
+    // hideout location
+  $("#location-markers .marker").click(lwc.setHideoutLocationOrTurnOffMarker);
 };
 
 lwc.showHideout = function() {
-  $("#murder-hideout-link").removeClass("hide");
-  $("#jack-link").hide();  
+  $("#hideout-location-link").removeClass("hide");
+  $("#jack-link").hide(); 
   lwc.resetJackTracking();
 };
 
@@ -159,6 +162,7 @@ lwc.randomPick = function(nodes) {
 lwc.showPossibleHomeSpot = function(node, addBigVisualEffect) {
   lwc.hideMarker($("#location-markers .marker"));
   lwc.turnOnNodes([node]);
+  Jack.hideout === node;
   if (addBigVisualEffect) {
     var $nodeEl = lwc.getMarkerForNode(node);
     $nodeEl.css({
@@ -178,25 +182,28 @@ lwc.showPossibleHomeSpot = function(node, addBigVisualEffect) {
 };
 
 lwc.setMurderLocationOrTurnOffMarker = function() {
-  if (lwc.isMurderTimeSet()) {
-    if (!lwc.isMurderLocationSet()) {
-      lwc.selectMurderLocation($(this));
-    }
-    else {
-      var $marker = $(this);
-      if ($marker.hasClass("rank-off")) {
-        lwc.enableMarker($marker);
+    if (lwc.isHideoutLocationSet()){  
+      if (lwc.isMurderTimeSet()) {
+        if (!lwc.isMurderLocationSet()) {
+          lwc.selectMurderLocation($(this));
+        }
+        else {
+          var $marker = $(this);
+          if ($marker.hasClass("rank-off")) {
+            lwc.enableMarker($marker);
+          }
+          else {
+            lwc.disableMarker($marker);
+          }
+        }
       }
-      else {
-        lwc.disableMarker($marker);
-      }
     }
-  }
 };
     
 lwc.selectMurderLocation = function($marker) {
   lwc.clearAllMarkers();
   lwc.setMurderLocation($marker.attr("id"));
+  Jack.position.push($marker.attr("id"));
   lwc.turnMarkerRed($marker);
   $("#murder-location-link").addClass("hide");
   $("#murder-next-link").removeClass("hide");
@@ -211,16 +218,6 @@ lwc.selectMurderTime = function() {
     $("#murder-location-link").removeClass("hide");
   }
 };
-
-lwc.selectHideoutTime = function() {
-  if (!lwc.isplayAsJackSet()) {
-    var $this = $(this);
-    lwc.setHideoutId($this.attr("id"));
-    lwc.selectHideout($this);
-    $("#murder-time-link").addClass("hide"); 
-    $("#murder-location-link").removeClass("hide");
-  }
-};
     
 lwc.selectTime = function($marker) {
   lwc.turnMarkerRed($marker);
@@ -229,6 +226,10 @@ lwc.selectTime = function($marker) {
     
 lwc.turnMarkerRed = function($marker) {
   $marker.removeClass("invisible-marker").addClass("red-marker");
+};
+
+lwc.turnMarkerBlue = function($marker) {
+  $marker.removeClass("invisible-marker").addClass("blue-marker");
 };
     
 lwc.advanceTime = function() {
@@ -593,4 +594,45 @@ lwc.getSortedNodes = function() {
   var nodes = lwc.getNodeArray();
   nodes.sort(sortNodesBasedOnNumberOfAdjacentNodes);
   return nodes;
+};
+
+var Jack = {
+    "position": [],
+    "hideout": ""
+}
+
+lwc.setHideoutLocationOrTurnOffMarker = function() {
+    if (!lwc.isHideoutLocationSet()) {
+      lwc.selectHideoutLocation($(this));
+    }
+    else {
+      var $marker = $(this);
+      if ($marker.hasClass("rank-off")) {
+        lwc.enableMarker($marker);
+      }
+      else {
+        lwc.disableMarker($marker);
+      }
+    }
+};
+
+lwc.getHideoutLocation = function() {
+  return $("#hideout-location-link").data("hideout-location-id");
+};
+
+lwc.isHideoutLocationSet = function() {
+  return $("#hideout-location-link").data("hideout-location-id") !== "";
+};
+
+lwc.setHideoutLocation = function(locationId) {
+  $("#hideout-location-link").data("hideout-location-id", locationId);
+  Jack.hideout = locationId;
+  console.log("Jacks Hideout:"+ Jack.hideout);
+};
+
+lwc.selectHideoutLocation = function($marker) {
+  lwc.clearAllMarkers();
+  lwc.setHideoutLocation($marker.attr("id"));
+  lwc.turnMarkerBlue($marker);
+  $("#hideout-location-link").addClass("hide");
 };
