@@ -32,8 +32,19 @@ lwc.init = function() {
 };
 
 lwc.showHideout = function() {
+  lwc.playAsJack = 1;  
   $("#hideout-location-link").removeClass("hide");
-  $("#jack-link").hide(); 
+  $("#rank-link").hide();
+  $("#rank-std").hide();
+  $("#rank-alt1").hide(); 
+  $("#rank-alt2").hide();
+  $("#rank-alt3").hide();    
+  $("#jack-link").hide();
+  $("#jacks-home-title").hide();
+  $("#home-easy").hide();
+  $("#home-normal").hide(); 
+  $("#home-hard").hide(); 
+  $("#home-epic").hide(); 
   lwc.resetJackTracking();
 };
 
@@ -182,7 +193,7 @@ lwc.showPossibleHomeSpot = function(node, addBigVisualEffect) {
 };
 
 lwc.setMurderLocationOrTurnOffMarker = function() {
-    if (lwc.isHideoutLocationSet()){  
+    if (lwc.isHideoutLocationSet() || !lwc.playAsJack){  
       if (lwc.isMurderTimeSet()) {
         if (!lwc.isMurderLocationSet()) {
           lwc.selectMurderLocation($(this));
@@ -236,7 +247,9 @@ lwc.advanceTime = function() {
   $this = $(this);
   if (lwc.isMurderTimeSet() && lwc.isMurderLocationSet() && !lwc.isAlreadySelected($this) && lwc.isNextTimeMarker($this)) {
     lwc.selectTime($this);
+    if (!lwc.playAsJack){
     lwc.showPossibleLocations(lwc.getMurderLocation(), lwc.getMovesAwayFromMurder());
+    }
   }
 };
     
@@ -602,17 +615,8 @@ var Jack = {
 }
 
 lwc.setHideoutLocationOrTurnOffMarker = function() {
-    if (!lwc.isHideoutLocationSet()) {
+    if (!lwc.isHideoutLocationSet() && lwc.playAsJack) {
       lwc.selectHideoutLocation($(this));
-    }
-    else {
-      var $marker = $(this);
-      if ($marker.hasClass("rank-off")) {
-        lwc.enableMarker($marker);
-      }
-      else {
-        lwc.disableMarker($marker);
-      }
     }
 };
 
@@ -627,7 +631,6 @@ lwc.isHideoutLocationSet = function() {
 lwc.setHideoutLocation = function(locationId) {
   $("#hideout-location-link").data("hideout-location-id", locationId);
   Jack.hideout = locationId;
-  console.log("Jacks Hideout:"+ Jack.hideout);
 };
 
 lwc.selectHideoutLocation = function($marker) {
