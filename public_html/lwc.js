@@ -202,6 +202,7 @@ lwc.setMurderLocationOrTurnOffMarker = function() {
           var $marker = $(this);
           if ($marker.hasClass("rank-off")) {
             lwc.enableMarker($marker);
+            Jack.position.push($marker.attr("id"));
           }
           else {
             lwc.disableMarker($marker);
@@ -212,7 +213,9 @@ lwc.setMurderLocationOrTurnOffMarker = function() {
 };
     
 lwc.selectMurderLocation = function($marker) {
+  if (!lwc.playAsJack){
   lwc.clearAllMarkers();
+  }
   lwc.setMurderLocation($marker.attr("id"));
   Jack.position.push($marker.attr("id"));
   lwc.turnMarkerRed($marker);
